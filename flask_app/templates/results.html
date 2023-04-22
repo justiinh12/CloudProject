@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nearest Gas Stations</title>
+</head>
+<body>
+    <h1>Nearest Gas Stations</h1>
+    <ul>
+    {% for result in results %}
+        <li>{{ result['name'] }}</li>
+        <ul>
+            <li>Location: {{ result['vicinity'] }}</li>
+            <li>Rating: {{ result.get('rating', 'N/A') }}</li>
+            <li>Distance: {{ result['distance'] }} meters</li>
+        </ul>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
