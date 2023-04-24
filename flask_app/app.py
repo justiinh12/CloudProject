@@ -9,6 +9,22 @@ app = Flask(__name__, template_folder='templates')
 def index():
     return render_template('index.html')
 
+def add_addr(addr_dict):
+    address_parts = []
+    if 'house_number' in addr_dict:
+        address_parts.append(addr_dict['house_number'])
+    elif 'amenity' in addr_dict:
+        address_parts.append(addr_dict['amenity'])
+    if 'road' in addr_dict:
+        address_parts.append(addr_dict['road'])
+    if 'town' in addr_dict:
+        address_parts.append(addr_dict['town'])
+    if 'state' in addr_dict:
+        address_parts.append(addr_dict['state'])
+    if 'postcode' in addr_dict:
+        address_parts.append(addr_dict['postcode'])
+    return ', '.join(address_parts)
+
 def get_gas_prices(lat, lng):
     api_url = f"https://www.gasbuddy.com/gaspricemap/county?lat={lat}&lng={lng}&usa=true"
     response = requests.post(api_url)
@@ -46,7 +62,7 @@ def nearest_gas_stations():
             lat = result['geometry']['location']['lat']
             lng = result['geometry']['location']['lng']
             addr_dict = locator.reverse((lat, lng)).raw['address']
-            addr = '{house_number} {road}, {town}, {state} {postcode}'.format(**addr_dict)
+            addr = add_addr(addr_dict)
             place_id = result['place_id']
             results.append({'name': name, 'location': addr, 'lat': lat, 'lng': lng, 'place_id': place_id})
 
