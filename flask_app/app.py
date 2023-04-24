@@ -9,6 +9,11 @@ app = Flask(__name__, template_folder='templates')
 def index():
     return render_template('index.html')
 
+def get_gas_prices(lat, lng):
+    api_url = f"https://www.gasbuddy.com/gaspricemap/county?lat={lat}&lng={lng}&usa=true"
+    response = requests.post(api_url)
+    return response.json()
+
 @app.route('/nearest_gas_stations', methods=['POST'])
 def nearest_gas_stations():
     try:
