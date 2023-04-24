@@ -9,6 +9,11 @@ app = Flask(__name__, template_folder='templates')
 def index():
     return render_template('index.html')
 
+def get_gas_prices(lat, lng):
+    api_url = f"https://www.gasbuddy.com/gaspricemap/county?lat={lat}&lng={lng}&usa=true"
+    response = requests.post(api_url)
+    return response.json()
+
 @app.route('/nearest_gas_stations', methods=['POST'])
 def nearest_gas_stations():
     try:
@@ -30,7 +35,6 @@ def nearest_gas_stations():
 
         # Query the API for the nearest gas stations to the input location
         url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{lng}&radius=5000&type=gas_station&key=AIzaSyAdHsbB4qey791DIuz8R9hoCT0yH49APT8"
-
         response = requests.get(url)
         data = json.loads(response.text)
 
@@ -45,8 +49,6 @@ def nearest_gas_stations():
             addr = '{house_number} {road}, {town}, {state} {postcode}'.format(**addr_dict)
             place_id = result['place_id']
             results.append({'name': name, 'location': addr, 'lat': lat, 'lng': lng, 'place_id': place_id})
-
-        print("Returning results to webpage")
 
         return render_template('results.html', results=results)
     except Exception as e:
