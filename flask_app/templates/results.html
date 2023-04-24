@@ -9,7 +9,7 @@
     {% for result in results %}
         <li>{{ result['name'] }}</li>
         <ul>
-            <li>Location: {{ result['vicinity'] }}</li>
+            <li>Location: {{ result['location'] }}</li>
             <li>Rating: {{ result.get('rating', 'N/A') }}</li>
             <li>Distance: {{ result['distance'] }} meters</li>
         </ul>

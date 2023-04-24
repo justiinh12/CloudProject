@@ -24,9 +24,13 @@ def nearest_gas_stations():
         lat = loc.latitude
         lng = loc.longitude
 
+        print(lat)
+        print(lng)
+
 
         # Query the API for the nearest gas stations to the input location
-        url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{lng}&radius=5000&type=gas_station&key={AIzaSyAdHsbB4qey791DIuz8R9hoCT0yH49APT8}"
+        url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{lng}&radius=5000&type=gas_station&key=AIzaSyAdHsbB4qey791DIuz8R9hoCT0yH49APT8"
+
         response = requests.get(url)
         data = json.loads(response.text)
 
@@ -37,8 +41,12 @@ def nearest_gas_stations():
             address = result['vicinity']
             lat = result['geometry']['location']['lat']
             lng = result['geometry']['location']['lng']
+            addr_dict = locator.reverse((lat, lng)).raw['address']
+            addr = '{house_number} {road}, {town}, {state} {postcode}'.format(**addr_dict)
             place_id = result['place_id']
-            results.append({'name': name, 'location': location, 'lat': lat, 'lng': lng, 'place_id': place_id})
+            results.append({'name': name, 'location': addr, 'lat': lat, 'lng': lng, 'place_id': place_id})
+
+        print("Returning results to webpage")
 
         return render_template('results.html', results=results)
     except Exception as e:
