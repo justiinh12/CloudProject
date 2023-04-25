@@ -1,5 +1,14 @@
 # CloudProject
 Cloud Computing Group Repo
 
-Here's the inspired repo: https://github.com/huilu1111/miniproject1
-Take what is being used from here and edit it to fit our project
+## Installation
+
+```bash
+git clone git@github.com:justiinh12/CloudProject.git
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+python3 app.py
+```
+
+
