@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request
+from celery import Celery
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic, Point
 import requests
 import json
 
 app = Flask(__name__, template_folder='templates')
+app.config['CELERY_BROKER_URL'] = ''
 
 @app.route('/')
 def index():
@@ -41,6 +43,10 @@ def get_gas_prices(lat, lng):
     print(maxLat, minLat, maxLng, minLng)
     
     print("Sending request")
+    print(maxLat)
+    print(maxLng)
+    print(minLat)
+    print(minLng)
 
     url = f'https://www.gasbuddy.com/gaspricemap/map?fuelTypeId=1&height=600&width=1265&maxLat={maxLat}&maxLng={maxLng}&minLat={minLat}&minLng={minLng}'
     

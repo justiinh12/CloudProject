@@ -1,0 +1,113 @@
+{
+  "primaryStations": [
+    {
+      "id": 116328,
+      "lat": 42.08882,
+      "lng": -75.914482,
+      "price": "--",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 205332,
+      "lat": 42.09028,
+      "lng": -75.91358,
+      "price": "3.65",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 86306,
+      "lat": 42.093803,
+      "lng": -75.901344,
+      "price": "--",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 92475,
+      "lat": 42.096105,
+      "lng": -75.908597,
+      "price": "3.65",
+      "iscash": true,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 104899,
+      "lat": 42.0994,
+      "lng": -75.92134,
+      "price": "3.59",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 114400,
+      "lat": 42.099749,
+      "lng": -75.923198,
+      "price": "--",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 122456,
+      "lat": 42.100606,
+      "lng": -75.925002,
+      "price": "--",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 122459,
+      "lat": 42.10067,
+      "lng": -75.903412,
+      "price": "3.47",
+      "iscash": true,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 98278,
+      "lat": 42.101449,
+      "lng": -75.902484,
+      "price": "3.65",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 122458,
+      "lat": 42.106212,
+      "lng": -75.90526,
+      "price": "--",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 114178,
+      "lat": 42.10766,
+      "lng": -75.90766,
+      "price": "3.63",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    },
+    {
+      "id": 122457,
+      "lat": 42.108592,
+      "lng": -75.91453,
+      "price": "--",
+      "iscash": false,
+      "tme": "",
+      "brand_id": 0
+    }
+  ],
+  "secondaryStations": []
+}
