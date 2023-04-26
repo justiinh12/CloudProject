@@ -10,10 +10,11 @@
     {% for result in results %}
         <li>{{ result['name'] }}</li>
         <ul>
-            <li>Location: {{ result['location'] }}</li>
+            <li>Location: {{ result['addr'] }}</li>
             <li>Rating: {{ result.get('rating', 'N/A') }}</li>
             <li>Distance: {{ result['distance'] }} meters</li>
             <li>Price: {{ result['price'] }}</li>
+
         </ul>
     {% endfor %}
     </ul>
