@@ -97,6 +97,15 @@ def nearest_gas_stations():
         print("getting price")
         prices = get_gas_prices(prompt_lat, prompt_lng)
         print("got prices")
+        for i in range(len(results)):
+            try:
+                station = prices["primaryStations"][i]
+                if station:
+                    results[i]["price"] = station["price"]
+                else:
+                    results[i]["price"] = "?"
+            except:
+                pass
         print(prices)
         return render_template('results.html', results=results)
     except Exception as e:
