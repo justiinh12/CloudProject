@@ -5,8 +5,11 @@ import traceback
 import requests
 import json
 
-app = Flask(__name__, template_folder='templates')
+
+#app = Flask(__name__, template_folder='templates')
 api_key = "AIzaSyAdHsbB4qey791DIuz8R9hoCT0yH49APT8"
+
+app = Flask(__name__, template_folder='templates', static_folder="static")
 
 @app.route('/')
 def index():
@@ -83,6 +86,7 @@ def nearest_gas_stations():
             #url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=latlng:{lat},{lng}&inputtype=textquery&fields=name,rating,formatted_address,geometry&key={api_key}"
 
         results = []
+
         for coord in coords:
             lat = coord[0]
             lng = coord[1]
@@ -126,6 +130,34 @@ def nearest_gas_stations():
 
         results = [s for s in results if s['price'] != "--"]
         results = sorted(results, key=lambda x: x['price'])
+
+
+        #for result in data['results']:
+            #name = result['name']
+            #address = result['vicinity']
+            #lat = result['geometry']['location']['lat']
+            #lng = result['geometry']['location']['lng']
+            #print(lat)
+            #print(lng)
+            #addr_dict = locator.reverse((lat, lng)).raw['address']
+            #addr = add_addr(addr_dict)
+            #place_id = result['place_id']
+            #results.append({'name': name, 'location': addr, 'lat': lat, 'lng': lng, 'place_id': place_id})
+
+
+        #print("getting price")
+        #prices = get_gas_prices(prompt_lat, prompt_lng)
+        #print("got prices")
+        #for i in range(len(results)):
+            #try:
+                #station = prices["primaryStations"][i]
+                #if station:
+                    #results[i]["price"] = station["price"]
+                #else:
+                    #results[i]["price"] = "?"
+            #except:
+                #pass
+        #print(prices)
 
         return render_template('results.html', results=results)
     except Exception as e:

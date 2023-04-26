@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Nearest Gas Stations</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <h1>Nearest Gas Stations</h1>
@@ -11,7 +12,9 @@
         <ul>
             <li>Location: {{ result['addr'] }}</li>
             <li>Rating: {{ result.get('rating', 'N/A') }}</li>
-	    <li>Price: {{ result.get('price', 'N/A') }}</li>
+            <li>Distance: {{ result['distance'] }} meters</li>
+            <li>Price: {{ result['price'] }}</li>
+
         </ul>
     {% endfor %}
     </ul>
