@@ -4,7 +4,7 @@ from geopy.distance import geodesic, Point
 import requests
 import json
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates', static_folder="static")
 
 @app.route('/')
 def index():
