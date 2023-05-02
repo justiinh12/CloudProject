@@ -3,12 +3,25 @@ from geopy.geocoders import Nominatim
 from geopy.distance import geodesic, Point
 import requests
 import json
+import os
+from supabase import create_client, Client
+
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
 
 app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/prices')
+def prices():
+    logs = supabase.table("prices").select("*").execute().data
+    for i in range(0, len(logs)):
+        logs[i]["created_at"] = logs[i]["created_at"][0:10]
+    return render_template('graphs.html', data=logs)
 
 def add_addr(addr_dict):
     address_parts = []

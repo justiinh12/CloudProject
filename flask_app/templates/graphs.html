@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <head>
+        <title>Daily Prices</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    </head>
+    <body>
+        {{ data }}
+        <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+        <script type="text/javascript">
+
+  data1 = {{ data|tojson }};
+
+  new Chart(
+    document.getElementById('acquisitions'),
+    {
+      type: 'line',
+      data: {
+        labels: data1.filter(row => row.loc == 'binghamton').map(row => row.created_at),
+        datasets: [
+          {
+            label: 'Binghamton',
+            data: data1.filter(row => row.loc == 'binghamton').map(row => row.daily_price)
+          },
+          {
+            label: 'Austin',
+            data: data1.filter(row => row.loc == 'austin').map(row => row.daily_price)
+          },
+          {
+            label: 'New York',
+            data: data1.filter(row => row.loc == 'new york').map(row => row.daily_price)
+          },
+          {
+            label: 'San Francisco',
+            data: data1.filter(row => row.loc == 'san francisco').map(row => row.daily_price)
+          },
+          {
+            label: 'Miami',
+            data: data1.filter(row => row.loc == 'miami').map(row => row.daily_price)
+          },
+          {
+            label: 'Cedar Rapids',
+            data: data1.filter(row => row.loc == 'cedar rapids').map(row => row.daily_price)
+          },
+          {
+            label: 'Redmond',
+            data: data1.filter(row => row.loc == 'redmond').map(row => row.daily_price)
+          },
+          {
+            label: 'Los Angeles',
+            data: data1.filter(row => row.loc == 'los angeles').map(row => row.daily_price)
+          },
+        ]
+      },
+      options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Daily Average Price per Metropolitan Area'
+            }
+        }
+    }
+    }
+  );
+        </script>
+    </body>
+</html>

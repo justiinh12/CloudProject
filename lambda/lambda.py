@@ -1,7 +1,9 @@
+# actual deployed lambda function minus env vars for obvious reasons
+
+import base64
 import requests
 from geopy.distance import geodesic, Point
 from supabase import create_client, Client
-import os
 import time
 
 url: str = os.environ.get("SUPABASE_URL")
@@ -19,10 +21,12 @@ locations = [
     (30.2672, -97.7431, "austin"), # austin
 ]
 
-stations = []
-
-def save_to_db():
-    # grab stations for each location
+def hello_pubsub(event, context):
+    """Triggered from a message on a Cloud Pub/Sub topic.
+    Args:
+         event (dict): Event payload.
+         context (google.cloud.functions.Context): Metadata for the event.
+    """
     for location in locations:
         p = Point(location[0], location[1])
         dist = 2500
@@ -67,12 +71,3 @@ def save_to_db():
                 # time.sleep(0.05)
         except ValueError:
             print("Failed to receive fuel price response")
-
-    # grab the station data for each station in each location
-
-    # parse and format this data
-
-    # dump the data into supabase
-    return
-
-save_to_db()
