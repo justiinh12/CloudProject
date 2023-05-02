@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <head>
+        <title>Daily Prices</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+        <style type="text/css">
+            *
+            {
+            background-color: #FAF9F6 !important;
+            }
+        </style>
+    </head>
+    <body style="background-color: #FAF9F6;">
+        <div class="container">
+            <div>&nbsp;</div>
+            <div class="columns">
+                <div class="column">
+                    <nav class="level">
+                        <a href="/"><b>PricePumpPal</b></a>
+                        <a href="/prices">Daily Prices</a>
+                        <a href="/api">API</a>
+                        <a href="/about">About</a>
+                    </nav>
+                </div>
+                <div class="column"></div>
+            </div>
+            <div class="level">&nbsp;</div>
+            <h1 class="title is-1">API Documentation</h1>
+            <p>Endpoint: </p> <pre>:///prices/&lt;place&gt;</pre>
+            <h4 class="title is-4">Request</h4>
+            <p><pre>place</pre> - ['austin', 'binghamton', 'new york', 'los angeles', 'miami', 'cedar rapids', 'redmond', 'san francisco']</p><hr>
+            <h4 class="title is-4">Response</h4>
+            <code>
+                [
+  {
+    "created_at": "2023-04-26",
+    "daily_price": 3.31786,
+    "loc": "austin"
+  },
+  {
+    "created_at": "2023-04-27",
+    "daily_price": 3.32273,
+    "loc": "austin"
+  },
+  {
+    "created_at": "2023-04-28",
+    "daily_price": 3.35444,
+    "loc": "austin"
+  },
+  {
+    "created_at": "2023-04-29",
+    "daily_price": 3.34455,
+    "loc": "austin"
+  },
+  {
+    "created_at": "2023-04-30",
+    "daily_price": 3.31188,
+    "loc": "austin"
+  },
+  {
+    "created_at": "2023-05-01",
+    "daily_price": 3.28462,
+    "loc": "austin"
+  },
+  {
+    "created_at": "2023-05-02",
+    "daily_price": 3.28778,
+    "loc": "austin"
+  }
+]
+            </code>
+        </div>
+    </body>
+</html>

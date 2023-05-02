@@ -29,6 +29,7 @@ def prices():
         del logs[i]["id"]
     return render_template('graphs.html', data=logs)
 
+# future todo: make this more efficient by slimming the specific database query
 @app.route('/prices/<place>')
 def price(place):
     if place == 'austin' or place == 'binghamton' or place == 'new york' or place == 'san francisco' or place == 'miami' or place == 'cedar rapids' or place == 'redmond' or place == 'los angeles':
@@ -40,6 +41,16 @@ def price(place):
         return logs
     else:
         return [{'err': True}]
+    
+# future todo add api filtering by date
+
+@app.route('/api')
+def api():
+    return render_template('api.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 def add_addr(addr_dict):
     address_parts = []
