@@ -26,7 +26,20 @@ def prices():
     logs = supabase.table("prices").select("*").execute().data
     for i in range(0, len(logs)):
         logs[i]["created_at"] = logs[i]["created_at"][0:10]
+        del logs[i]["id"]
     return render_template('graphs.html', data=logs)
+
+@app.route('/prices/<place>')
+def price(place):
+    if place == 'austin' or place == 'binghamton' or place == 'new york' or place == 'san francisco' or place == 'miami' or place == 'cedar rapids' or place == 'redmond' or place == 'los angeles':
+        logs = supabase.table("prices").select("*").execute().data
+        logs = list(filter(lambda x: x["loc"] == place, logs))
+        for i in range(0, len(logs)):
+            logs[i]["created_at"] = logs[i]["created_at"][0:10]
+            del logs[i]["id"]
+        return logs
+    else:
+        return [{'err': True}]
 
 def add_addr(addr_dict):
     address_parts = []

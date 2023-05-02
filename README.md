@@ -13,6 +13,8 @@ pip3 install -r requirements.txt
 python3 app.py
 ```
 
+You need to have two env variables in your environment, SUPABASE_URL and SUPABASE_KEY to run python3 app.py. You can obtain a relevant supabase key to do so. The table schema for prices is an int8 id, varchar loc, timestamptz created_at, and float4 daily_price.
+
 ### lambda
 This stuff goes into the gce console.
 
