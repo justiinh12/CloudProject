@@ -1,0 +1,44 @@
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+label {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+li {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(189, 188, 255);
+    outline: none;
+    border: 1px solid black;
+}
+
+html, body {
+    background-color: rgb(208, 208, 255);
+}
+
+body {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+input[type="submit"] {
+    background-color: rgb(187, 185, 255);
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
+    transition: all 0.1s;
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+input[type="submit"]:hover {
+    color: white;
+}
