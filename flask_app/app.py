@@ -6,6 +6,8 @@ import requests
 import json
 import os
 from supabase import create_client, Client
+import datetime
+import pytz
 
 url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
@@ -19,7 +21,12 @@ app = Flask(__name__, template_folder='templates', static_folder="static")
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    dt = datetime.datetime.now(pytz.timezone('Africa/Abidjan')) - datetime.timedelta(days=1)
+    logs = supabase.table("prices").select("*").gte("created_at", dt).execute().data
+    data = {}
+    for log in logs:
+        data[log['loc']] = log
+    return render_template('index.html', data=data)
 
 @app.route('/prices')
 def prices():
