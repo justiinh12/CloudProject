@@ -1,23 +1,65 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Nearest Gas Stations</title>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-    <h1>Nearest Gas Stations</h1>
-    <ul>
-    {% for result in results %}
-        <li>{{ result['name'] }}</li>
-        <ul>
-            <li>Location: {{ result['addr'] }}</li>
-            <li>Rating: {{ result.get('rating', 'N/A') }}</li>
-            <li>Distance: {{ result['distance'] }} meters</li>
-            <li>Price: {{ result['price'] }}</li>
+    <head>
+        <title>PricePumpPal | Gas Station Map</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+        <style type="text/css">
+            *
+            {
+            background-color: #FAF9F6 !important;
+            }
+        </style>
+    </head>
+    <body style="background-color: #FAF9F6;">
+        <div class="container">
+            <div>&nbsp;</div>
+            <div class="columns">
+                <div class="column">
+                    <nav class="level">
+                        <a href="/"><b>PricePumpPal</b></a>
+                        <a href="/prices">Daily Prices</a>
+                        <a href="/api">API</a>
+                        <a href="/about">About</a>
+                    </nav>
+                </div>
+                <div class="column"></div>
+            </div>
+            <div class="level">&nbsp;</div>
+            <h1 class="title is-1">Gas Stations</h1>
+            <ul>
+                <!-- {% for result in results %}
+                    <li>{{ result['name'] }}</li>
+                    <ul>
+                        <li>Location: {{ result['addr'] }}</li>
+                        <li>Rating: {{ result.get('rating', 'N/A') }}</li>
+                        <li>Distance: {{ result['distance'] }} meters</li>
+                        <li>Price: {{ result['price'] }}</li>
+            
+                    </ul>
+                {% endfor %}
+                </ul>
+                {{ results }} -->
+                <div class="columns">
+                    <div id="map" class="column" style="min-height: 500px;"></div>
+                </div>
+                <script>
 
-        </ul>
-    {% endfor %}
-    </ul>
-</body>
+                    var data = {{ results|tojson }};
+
+                    var map = L.map('map').setView([42.1, -75.9], 15);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+for(const result of data) {
+    L.marker([result['lat'], result['lng']]).addTo(map)
+    .bindPopup('<b>' + result['name'] + '</b><br><i>' + result['addr'] + '</i><br>Rating: <b>' + result['rating'] + '</b><br />Price: $' + result['price'])
+}
+                </script>
+        </div>
+    </body>
 </html>
 

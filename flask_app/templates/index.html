@@ -49,15 +49,22 @@
                 </div>
             </div>
             <h1 class="title is-1">Find Nearest Gas Stations</h1>
-            <form method="POST" action="/nearest_gas_stations">
-                <label for="location">Enter your location:</label>
-                <input type="text" id="location" name="location">
-                <br><br>
-            <label for="distance">Enter the search distance (in meters):</label>
-                <input type="number" id="distance" name="distance" value="5000">        
-            <br><br>
-            <input type="submit" value="Find Gas Stations">
-            </form>
+            <div class="columns">
+                <div class="column">
+                    <form method="POST" action="/nearest_gas_stations">
+                        <label for="location">Enter your location:</label>
+                        <input type="text" id="location" name="location" class="input">
+                        <br><br>
+                    <label for="distance">Enter the search distance (in meters):</label>
+                        <input type="number" id="distance" name="distance" value="5000" class="input">        
+                    <br><br>
+                    <input type="submit" value="Find Gas Stations" class="button is-link has-background-primary has-text-white">
+                    </form>
+                </div>
+                <div class="column">
+
+                </div>
+            </div>
         </div>
     </body>
 </html>
